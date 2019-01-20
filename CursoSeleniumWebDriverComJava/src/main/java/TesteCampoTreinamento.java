@@ -1,12 +1,15 @@
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+
+
 
 public class TesteCampoTreinamento {
 
@@ -116,7 +119,6 @@ public class TesteCampoTreinamento {
 		driver.quit();
 	}
 	
-	
 	@Test
 	public void testeBotoes() {
 		WebDriver driver = new ChromeDriver();
@@ -129,6 +131,20 @@ public class TesteCampoTreinamento {
 		Assert.assertEquals("Obrigado!", btnClick.getAttribute("value"));
 		
 		driver.quit();
+	}
+	
+	@Test
+	@Ignore
+	public void testeLink() {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		
+		WebElement link = driver.findElement(By.linkText("Voltar"));
+		link.click();
+		
+		//Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
+		// Assert.fail();
 	}
 	
 }
