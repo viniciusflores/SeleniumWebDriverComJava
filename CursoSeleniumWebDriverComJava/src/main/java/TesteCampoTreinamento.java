@@ -117,6 +117,18 @@ public class TesteCampoTreinamento {
 	}
 	
 	
-	
+	@Test
+	public void testeBotoes() {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		
+		WebElement btnClick = driver.findElement(By.id("buttonSimple"));
+		btnClick.click();
+		
+		Assert.assertEquals("Obrigado!", btnClick.getAttribute("value"));
+		
+		driver.quit();
+	}
 	
 }
