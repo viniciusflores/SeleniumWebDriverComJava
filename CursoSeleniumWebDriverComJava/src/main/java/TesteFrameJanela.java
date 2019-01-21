@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 
-public class TesteFrame {
+public class TesteFrameJanela {
 	@Test
 	public void testeFrame() {
 		WebDriver driver = new ChromeDriver();
@@ -22,7 +22,24 @@ public class TesteFrame {
 		alerta.accept();
 		
 		driver.switchTo().defaultContent();
-		driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);
+		driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);	
 		
+		driver.quit();
+	}
+	
+	@Test
+	public void testeJanela() {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		
+		driver.findElement(By.id("buttonPopUpEasy")).click();
+		driver.switchTo().window("Popup");
+		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+		driver.close();
+		driver.switchTo().window("");
+		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
+		
+		driver.quit();
 	}
 }
