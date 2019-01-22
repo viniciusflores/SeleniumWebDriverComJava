@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-
 public class TesteFrameJanela {
 	@Test
 	public void testeFrame() {
@@ -41,5 +40,22 @@ public class TesteFrameJanela {
 		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
 		
 		driver.quit();
+	}
+	
+	@Test
+	public void testeWindowHandler() {
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		
+		driver.findElement(By.id("buttonPopUpHard")).click();
+		// System.out.println(driver.getWindowHandle());
+		// System.out.println(driver.getWindowHandles());
+		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);
+		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
+		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
+		
+		// driver.quit();
 	}
 }
