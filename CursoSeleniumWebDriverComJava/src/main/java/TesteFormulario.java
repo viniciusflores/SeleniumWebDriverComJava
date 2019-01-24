@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,49 +12,47 @@ public class TesteFormulario {
 	
 	private WebDriver driver;
 	
-	
+	@Before
 	public void inicializa() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 	}
 	
+	@After
+	public void finaliza() {
+		driver.quit();
+	}
+	
 	@Test
 	public void validaNomeObrigatorio() {
-		inicializa();
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
 		Assert.assertEquals("Nome eh obrigatorio", txt);
-		driver.quit();
 	}
 
 	@Test
 	public void validaSobrenomeObrigatorio() {
-		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
 		Assert.assertEquals("Sobrenome eh obrigatorio", txt);
-		driver.quit();
 	}
 	
 	@Test
 	public void validaSexoObrigatorio() {
-		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
 		Assert.assertEquals("Sexo eh obrigatorio", txt);
-		driver.quit();
 	}
 
 	@Test
 	public void validaVegetariano() {
-		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
 		driver.findElement(By.id("elementosForm:sexo:1")).click();
@@ -63,12 +62,10 @@ public class TesteFormulario {
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
 		Assert.assertEquals("Tem certeza que voce eh vegetariano?", txt);
-		driver.quit();
 	}
 	
 	@Test
 	public void validaEsporte() {
-		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
 		driver.findElement(By.id("elementosForm:sexo:1")).click();
@@ -83,9 +80,6 @@ public class TesteFormulario {
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
 		Assert.assertEquals("Voce faz esporte ou nao?", txt);
-		driver.quit();
 	}
-	
-	
 	
 }
