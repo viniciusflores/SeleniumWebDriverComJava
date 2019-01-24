@@ -1,4 +1,5 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -7,11 +8,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class TesteFormulario {
-	@Test
-	public void validaNomeObrigatorio() {
-		WebDriver driver = new ChromeDriver();
+	
+	private WebDriver driver;
+	
+	
+	public void inicializa() {
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+	}
+	
+	@Test
+	public void validaNomeObrigatorio() {
+		inicializa();
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
@@ -21,9 +30,7 @@ public class TesteFormulario {
 
 	@Test
 	public void validaSobrenomeObrigatorio() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alerta = driver.switchTo().alert();
@@ -34,9 +41,7 @@ public class TesteFormulario {
 	
 	@Test
 	public void validaSexoObrigatorio() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
@@ -48,9 +53,7 @@ public class TesteFormulario {
 
 	@Test
 	public void validaVegetariano() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
 		driver.findElement(By.id("elementosForm:sexo:1")).click();
@@ -65,9 +68,7 @@ public class TesteFormulario {
 	
 	@Test
 	public void validaEsporte() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		inicializa();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
 		driver.findElement(By.id("elementosForm:sexo:1")).click();
