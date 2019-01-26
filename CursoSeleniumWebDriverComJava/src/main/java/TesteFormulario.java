@@ -11,12 +11,14 @@ import org.openqa.selenium.support.ui.Select;
 public class TesteFormulario {
 	
 	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializa() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
 	}
 	
 	@After
@@ -34,7 +36,8 @@ public class TesteFormulario {
 
 	@Test
 	public void validaSobrenomeObrigatorio() {
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
+		dsl.escreveComIdCampo("elementosForm:nome", "Nome");
+		//driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
@@ -43,8 +46,8 @@ public class TesteFormulario {
 	
 	@Test
 	public void validaSexoObrigatorio() {
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
-		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
+		dsl.escreveComIdCampo("elementosForm:nome", "Nome");
+		dsl.escreveComIdCampo("elementosForm:sobrenome", "Silva");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alerta = driver.switchTo().alert();
 		String txt = alerta.getText();
@@ -53,8 +56,8 @@ public class TesteFormulario {
 
 	@Test
 	public void validaVegetariano() {
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
-		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
+		dsl.escreveComIdCampo("elementosForm:nome", "Nome");
+		dsl.escreveComIdCampo("elementosForm:sobrenome", "Silva");
 		driver.findElement(By.id("elementosForm:sexo:1")).click();
 		driver.findElement(By.id("elementosForm:comidaFavorita:3")).click();
 		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
@@ -66,8 +69,8 @@ public class TesteFormulario {
 	
 	@Test
 	public void validaEsporte() {
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome");
-		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Silva");
+		dsl.escreveComIdCampo("elementosForm:nome", "Nome");
+		dsl.escreveComIdCampo("elementosForm:sobrenome", "Silva");
 		driver.findElement(By.id("elementosForm:sexo:1")).click();
 		Select combo = new Select(driver.findElement(By.id("elementosForm:esportes")));
 		combo.selectByIndex(0);

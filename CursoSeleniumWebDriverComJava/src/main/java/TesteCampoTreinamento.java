@@ -1,8 +1,8 @@
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -13,74 +13,56 @@ import org.openqa.selenium.support.ui.Select;
 
 public class TesteCampoTreinamento {
 
-	@Test
-	public void testeTextField() {
-		WebDriver driver = new ChromeDriver();
+	private WebDriver driver;
+	private DSL dsl;
+
+	@Before
+	public void inicializa() {
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
+	}
 
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Vili");
-		Assert.assertEquals("Vili", driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
+	@After
+	public void finaliza() {
 		driver.quit();
+	}
+
+	@Test
+	public void testeTextField() {
+		dsl.escreveComIdCampo("elementosForm:nome", "Vili");
+		Assert.assertEquals("Vili", dsl.obterValorCampo("elementosForm:nome"));
+
 	}
 
 	@Test
 	public void testeTextArea() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl.escreveComIdCampo("elementosForm:sugestoes", "Vili\ncius\nFlores");
+		Assert.assertEquals("Vili\ncius\nFlores", dsl.obterValorCampo("elementosForm:sugestoes"));
 
-		WebElement txtSugestoes = driver.findElement(By.id("elementosForm:sugestoes"));
-		txtSugestoes.sendKeys("Vili\ncius\nFlores");
-		Assert.assertEquals("Vili\ncius\nFlores", txtSugestoes.getAttribute("value"));
-		driver.quit();
 	}
 
 	@Test
 	public void testeRadioButton() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-
-		WebElement radBtn = driver.findElement(By.id("elementosForm:sexo:0"));
-		radBtn.click();
-		Assert.assertTrue(radBtn.isSelected());
-		driver.quit();
+		dsl.clicarComIdCampo("elementosForm:sexo:0");
+		Assert.assertTrue(dsl.estaCampoMarcado("elementosForm:sexo:0"));
 	}
 
 	@Test
 	public void testeCheckBox() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-
-		WebElement checkPizza = driver.findElement(By.id("elementosForm:comidaFavorita:2"));
-		checkPizza.click();
-		Assert.assertTrue(checkPizza.isSelected());
-		driver.quit();
+		dsl.clicarComIdCampo("elementosForm:comidaFavorita:2");
+		Assert.assertTrue(dsl.estaCampoMarcado("elementosForm:comidaFavorita:2"));		
 	}
 
 	@Test
 	public void testeCombo() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-
-		Select comboEscola = new Select(driver.findElement(By.id("elementosForm:escolaridade")));
-		// comboEscola.selectByIndex(3);
-		// comboEscola.selectByValue("1graucomp");
-		comboEscola.selectByVisibleText("Superior");
-
-		Assert.assertEquals("Superior", comboEscola.getFirstSelectedOption().getText());
-		driver.quit();
+		dsl.selecionarCombo("elementosForm:escolaridade", "Superior");
+		Assert.assertEquals("Superior", dsl.obterValorCombo("elementosForm:escolaridade"));
 	}
 
 	@Test
 	public void testeCombo2() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getOptions();
@@ -95,15 +77,10 @@ public class TesteCampoTreinamento {
 		}
 		Assert.assertTrue(encontrou);
 
-		driver.quit();
 	}
 
 	@Test
 	public void testeComboMultiplo() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-
 		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(element);
 		combo.selectByVisibleText("Natacao");
@@ -113,48 +90,32 @@ public class TesteCampoTreinamento {
 		List<WebElement> allSelectOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(3, allSelectOptions.size());
 
-		driver.quit();
 	}
 
 	@Test
 	public void testeBotoes() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl.clicarComIdCampo("buttonSimple");
 
-		WebElement btnClick = driver.findElement(By.id("buttonSimple"));
-		btnClick.click();
+		Assert.assertEquals("Obrigado!", dsl.obterValorCampo("buttonSimple"));
 
-		Assert.assertEquals("Obrigado!", btnClick.getAttribute("value"));
-
-		driver.quit();
 	}
 
 	@Test
 	@Ignore
 	public void testeLink() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-
 		WebElement link = driver.findElement(By.linkText("Voltar"));
 		link.click();
 
 		// Assert.assertEquals("Voltou!",
 		// driver.findElement(By.id("resultado")).getText());
 		// Assert.fail();
-		driver.quit();
+
 	}
 
 	@Test
 	public void testeBuscaTextoNaTela() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-
-		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
-
-		driver.quit();
+		Assert.assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", dsl.obterTexto(By.className("facilAchar")));
+		
 	}
-
 }
