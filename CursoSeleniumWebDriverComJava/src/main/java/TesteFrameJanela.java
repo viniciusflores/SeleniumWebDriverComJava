@@ -1,4 +1,6 @@
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -7,55 +9,52 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class TesteFrameJanela {
-	@Test
-	public void testeFrame() {
-		WebDriver driver = new ChromeDriver();
+	
+	private WebDriver driver;
+	private DSL dsl;
+
+	@Before
+	public void inicializa() {
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		
-		driver.switchTo().frame("frame1");
-		driver.findElement(By.id("frameButton")).click();
-		Alert alerta = driver.switchTo().alert();
-		String msg = alerta.getText();
+		dsl = new DSL(driver);
+	}
+
+	@After
+	public void finaliza() {
+		driver.quit();
+	}
+	
+	@Test
+	public void deveInteragirComFrames() {
+		dsl.entrarFrame("frame1");
+		dsl.clicarBotao("frameButton");
+		String msg = dsl.alertaObterTextoEAceita();
 		Assert.assertEquals("Frame OK!", msg);
-		alerta.accept();
-		
-		driver.switchTo().defaultContent();
-		driver.findElement(By.id("elementosForm:nome")).sendKeys(msg);	
-		
-		driver.quit();
+
+		dsl.sairFrame();
+		dsl.escrever("elementosForm:nome", msg);
 	}
 	
 	@Test
-	public void testeJanela() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		
-		driver.findElement(By.id("buttonPopUpEasy")).click();
-		driver.switchTo().window("Popup");
-		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+	public void deveInteragirComJanelas() {
+		dsl.clicarBotao("buttonPopUpEasy");
+		dsl.trocarJanela("Popup");
+		dsl.escrever(By.tagName("textarea"), "Deu certo?");
 		driver.close();
-		driver.switchTo().window("");
-		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
-		
-		driver.quit();
+		dsl.trocarJanela("");
+		dsl.escrever(By.tagName("textarea"), "e agora?");
 	}
 	
 	@Test
-	public void testeWindowHandler() {
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		
-		driver.findElement(By.id("buttonPopUpHard")).click();
-		// System.out.println(driver.getWindowHandle());
-		// System.out.println(driver.getWindowHandles());
-		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);
-		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
-		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
-		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
-		
-		// driver.quit();
+	public void deveInteragirComJanelasSemTitulo() {
+		dsl.clicarBotao("buttonPopUpHard");
+		System.out.println(driver.getWindowHandle());
+		System.out.println(driver.getWindowHandles());
+		dsl.trocarJanela((String) driver.getWindowHandles().toArray()[1]);
+		dsl.escrever(By.tagName("textarea"), "Deu certo?");
+		dsl.trocarJanela((String) driver.getWindowHandles().toArray()[0]);
+		dsl.escrever(By.tagName("textarea"), "e agora?");
 	}
 }
