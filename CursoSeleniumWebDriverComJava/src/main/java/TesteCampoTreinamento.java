@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -119,4 +121,14 @@ public class TesteCampoTreinamento {
 		Assert.assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
 		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", dsl.obterTexto(By.className("facilAchar")));
 	}
+	
+	@Test
+	public void testJavascript() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		//js.executeScript("alert('Testando js via selenium')");
+		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escrito via js'");
+		WebElement element = driver.findElement(By.id("elementosForm:nome"));
+		js.executeScript("arguments[0].style.border = arguments[1]", element, "solid 4px red");	
+	}
+	
 }
