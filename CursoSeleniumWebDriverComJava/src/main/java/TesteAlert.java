@@ -12,11 +12,12 @@ public class TesteAlert {
 
 	private WebDriver driver;
 	private DSL dsl;
-	
+
 	@Before
 	public void inicializa(){
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
+		
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
 	}
@@ -28,6 +29,15 @@ public class TesteAlert {
 		
 	@Test
 	public void deveInteragirComAlertSimples() {
+		dsl.clicarBotao("alert");
+		String texto = dsl.alertaObterTextoEAceita(); 
+		Assert.assertEquals("Alert Simples", texto);
+		
+		dsl.escrever("elementosForm:nome", texto);
+	}
+	
+	@Test
+	public void deveInteragirComAlertConfirm() {
 		dsl.clicarBotao("confirm");
 		Assert.assertEquals("Confirm Simples", dsl.alertaObterTextoEAceita());
 		Assert.assertEquals("Confirmado", dsl.alertaObterTextoEAceita());
@@ -38,33 +48,12 @@ public class TesteAlert {
 	}
 	
 	@Test
-	public void deveInteragirComAlertConfirm() {
-		WebElement btnAlert = driver.findElement(By.id("confirm"));
-		btnAlert.click();
-		Alert alerta = driver.switchTo().alert();
-		alerta.accept();
-		String texto = alerta.getText();
-		Assert.assertEquals("Confirmado", texto);
-		alerta.accept();
-		texto = "";
-		
-		btnAlert.click();
-		alerta = driver.switchTo().alert();
-		alerta.dismiss();
-		texto = alerta.getText();
-		Assert.assertEquals("Negado", texto);
-		alerta.accept();
-		
-	}
-	
-	@Test
 	public void deveInteragirComAlertPrompt() {
 		dsl.clicarBotao("prompt");
 		Assert.assertEquals("Digite um numero", dsl.alertaObterTexto());
 		dsl.alertaEscrever("12");
 		Assert.assertEquals("Era 12?", dsl.alertaObterTextoEAceita());
 		Assert.assertEquals(":D", dsl.alertaObterTextoEAceita());
-		
 	}
 		
 }
