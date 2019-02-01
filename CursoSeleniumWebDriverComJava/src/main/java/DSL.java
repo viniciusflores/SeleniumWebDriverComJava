@@ -32,6 +32,10 @@ private WebDriver driver;
 	
 	/********* Radio e Check ************/
 	
+	public void clicarRadio(By by) {
+		driver.findElement(by).click();
+	}
+	
 	public void clicarRadio(String id) {
 		driver.findElement(By.id(id)).click();
 	}
@@ -50,6 +54,11 @@ private WebDriver driver;
 	
 	/********* Combo ************/
 	
+	public void selecionarCombo(By by, String valor) {
+		WebElement element = driver.findElement(by);
+		Select combo = new Select(element);
+		combo.selectByVisibleText(valor);
+	}
 	public void selecionarCombo(String id, String valor) {
 		WebElement element = driver.findElement(By.id(id));
 		Select combo = new Select(element);

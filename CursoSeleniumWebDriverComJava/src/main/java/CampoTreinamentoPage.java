@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CampoTreinamentoPage {
@@ -50,42 +51,32 @@ public class CampoTreinamentoPage {
 	}
 	
 	public String obterResultadoCadastro() {
-		return dsl.obterTexto("resultado");
+		return dsl.obterTexto(By.xpath("//*[@id='resultado']/span"));
 	}
 	
 	public String obterResultadoNome() {
-		return dsl.obterTexto("descNome");
+		return dsl.obterTexto(By.xpath("//*[@id='descNome']/span"));
 	}
 	
 	public String obterResultadoSobrenome() {
-		return dsl.obterTexto("descSobrenome");
+		return dsl.obterTexto(By.xpath("//*[@id='descSobrenome']/span"));
 	}
 	
 	public String obterResultadoSexo() {
-		return dsl.obterTexto("descSexo");
+		return dsl.obterTexto(By.xpath("//*[@id='descSexo']/span"));
 	}
 	
 	public String obterResultadoComida() {
-		return dsl.obterTexto("descComida");
+		return dsl.obterTexto(By.xpath("//*[@id='descComida']/span"));
 	}
 	
 	public String obterResultadoEscolaridade() {
-		return dsl.obterTexto("descEscolaridade");
+		return dsl.obterTexto(By.xpath("//*[@id='descEscolaridade']/span"));
 	}
 	
 	public String obterResultadoEsportes() {
-		return dsl.obterTexto("descEsportes");
+		return dsl.obterTexto(By.xpath("//*[@id='descEsportes']/span"));
 	}
-	
-	
-	
-	
-	
-	
-	/*
-	 * dsl.obterTexto("resultado")
-	 * 
-	 */
-	
+
 	
 }
