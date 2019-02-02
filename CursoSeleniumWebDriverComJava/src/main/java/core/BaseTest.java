@@ -8,6 +8,8 @@ public class BaseTest {
 
 	@After
 	public void finaliza(){
-		killDriver();
+		if(Propiedades.FECHAR_BROWSER) {
+			killDriver();
+		}
 	}
 }
