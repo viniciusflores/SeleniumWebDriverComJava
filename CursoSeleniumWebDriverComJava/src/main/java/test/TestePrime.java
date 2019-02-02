@@ -1,3 +1,4 @@
+package test;
 import static core.DriverFactory.getDriver;
 import static core.DriverFactory.killDriver;
 
@@ -8,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import core.DSL;
+import page.CampoTreinamentoPage;
 
 public class TestePrime {
 	private DSL dsl;

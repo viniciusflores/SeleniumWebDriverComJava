@@ -1,3 +1,4 @@
+package test;
 import static core.DriverFactory.getDriver;
 import static core.DriverFactory.killDriver;
 
@@ -5,6 +6,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import page.CampoTreinamentoPage;
 
 public class TesteCadastroComSucesso {
 	

@@ -1,3 +1,4 @@
+package test;
 import static core.DriverFactory.getDriver;
 import static core.DriverFactory.killDriver;
 
@@ -6,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import core.DSL;
+import page.CampoTreinamentoPage;
 
 public class TesteFormulario {
 	

@@ -1,3 +1,4 @@
+package test;
 import static core.DriverFactory.getDriver;
 import static core.DriverFactory.killDriver;
 

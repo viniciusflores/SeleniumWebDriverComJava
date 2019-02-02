@@ -1,3 +1,4 @@
+package test;
 import static core.DriverFactory.getDriver;
 
 import java.util.Arrays;
@@ -15,6 +16,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import core.DSL;
 import core.DriverFactory;
+import page.CampoTreinamentoPage;
 
 @RunWith(Parameterized.class)
 public class TesteRegrasCadastro {
