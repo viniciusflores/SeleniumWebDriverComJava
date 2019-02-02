@@ -31,6 +31,7 @@ public class TesteAjax {
 		dsl.clicarBotao("j_idt694:j_idt697");
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.textToBe(By.id("j_idt694:display"), "firmizinho"));
+		//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("j_idt709")));
 		Assert.assertEquals("firmizinho", dsl.obterTexto("j_idt694:display"));
 	}
 }
