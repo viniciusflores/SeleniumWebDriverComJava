@@ -1,3 +1,6 @@
+import static core.DriverFactory.getDriver;
+import static core.DriverFactory.killDriver;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,6 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import core.DSL;
+import core.DriverFactory;
+
 public class TesteAlert {
 
 	private WebDriver driver;
@@ -15,16 +21,13 @@ public class TesteAlert {
 
 	@Before
 	public void inicializa(){
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	
 	@After
 	public void finaliza(){
-		driver.quit();
+		killDriver();
 	}
 		
 	@Test
