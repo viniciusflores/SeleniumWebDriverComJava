@@ -1,15 +1,9 @@
 package page;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-import core.DSL;
+import core.BasePage;
 
-public class CampoTreinamentoPage {
-	private DSL dsl;
-	
-	public CampoTreinamentoPage(){
-		dsl = new DSL();
-	}
+public class CampoTreinamentoPage extends BasePage{
 
 	public void setNome(String nome) {
 		dsl.escrever("elementosForm:nome", nome);

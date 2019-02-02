@@ -1,23 +1,15 @@
 package test;
 import static core.DriverFactory.getDriver;
-import static core.DriverFactory.killDriver;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import core.BaseTest;
 import core.DSL;
-import core.DriverFactory;
 
-public class TesteAlert {
+public class TesteAlert extends BaseTest{
 
-	private WebDriver driver;
 	private DSL dsl;
 
 	@Before
@@ -25,11 +17,7 @@ public class TesteAlert {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
 	}
-	
-	@After
-	public void finaliza(){
-		killDriver();
-	}
+
 		
 	@Test
 	public void deveInteragirComAlertSimples() {

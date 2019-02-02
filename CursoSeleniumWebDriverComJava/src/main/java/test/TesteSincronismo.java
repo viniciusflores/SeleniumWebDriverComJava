@@ -1,10 +1,8 @@
 package test;
 import static core.DriverFactory.getDriver;
-import static core.DriverFactory.killDriver;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +10,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import core.BaseTest;
 import core.DSL;
 
-public class TesteSincronismo {
+public class TesteSincronismo extends BaseTest{
 	private DSL dsl;
 
 	@Before
@@ -22,11 +21,6 @@ public class TesteSincronismo {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
 	}
-
-	@After
-	public void finaliza() {
-		killDriver();
-}
 	
 	@Test
 	public void deveUtilizarEsperaFixa() throws InterruptedException {

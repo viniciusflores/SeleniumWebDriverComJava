@@ -1,17 +1,16 @@
 package test;
 import static core.DriverFactory.getDriver;
-import static core.DriverFactory.killDriver;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import core.BaseTest;
 import core.DSL;
 import page.CampoTreinamentoPage;
 
-public class TestePrime {
+public class TestePrime extends BaseTest {
 	private DSL dsl;
 
 	@Before
@@ -20,12 +19,7 @@ public class TestePrime {
 		dsl = new DSL();
 		new CampoTreinamentoPage();
 	}
-	
-	@After
-	public void finaliza(){
-		killDriver();
-	}
-	
+		
 	@Test
 	public void deveInteragirComRadioPrime() {
 		//dsl.clicarRadio(By.xpath("input[@id='j_idt695:console:0']/../..//span"));

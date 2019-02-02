@@ -1,15 +1,15 @@
 package test;
 import static core.DriverFactory.getDriver;
-import static core.DriverFactory.killDriver;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import core.BaseTest;
 import core.DSL;
 import page.CampoTreinamentoPage;
 
-public class TesteFormulario {
+public class TesteFormulario extends BaseTest{
 	
 	private DSL dsl;
 	private CampoTreinamentoPage page;
@@ -19,12 +19,7 @@ public class TesteFormulario {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		page = new CampoTreinamentoPage();
 	}
-	
-	@After
-	public void finaliza() {
-		killDriver();
-	}
-	
+
 	@Test
 	public void deveValidarNomeObrigatorio() {
 		page.cadastrar();

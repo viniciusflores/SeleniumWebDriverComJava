@@ -1,11 +1,9 @@
 package test;
 import static core.DriverFactory.getDriver;
-import static core.DriverFactory.killDriver;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -15,9 +13,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import core.BaseTest;
 import core.DSL;
 
-public class TesteCampoTreinamento {
+public class TesteCampoTreinamento extends BaseTest{
 
 	private DSL dsl;
 
@@ -25,11 +24,6 @@ public class TesteCampoTreinamento {
 	public void inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
-	}
-
-	@After
-	public void finaliza() {
-		killDriver();
 	}
 
 	@Test

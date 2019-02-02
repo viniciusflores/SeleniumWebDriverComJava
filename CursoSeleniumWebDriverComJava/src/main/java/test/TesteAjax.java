@@ -1,30 +1,23 @@
 package test;
 import static core.DriverFactory.getDriver;
-import static core.DriverFactory.killDriver;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import core.BaseTest;
 import core.DSL;
 
-public class TesteAjax {
+public class TesteAjax extends BaseTest{
 	private DSL dsl;
 
 	@Before
 	public void inicializa() {
 		getDriver().get("https://www.primefaces.org/showcase/ui/ajax/basic.xhtml");
 		dsl = new DSL();
-	}
-
-	@After
-	public void finaliza() {
-		killDriver();
 	}
 	
 	@Test

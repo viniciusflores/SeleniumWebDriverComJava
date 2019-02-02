@@ -1,15 +1,14 @@
 package test;
 import static core.DriverFactory.getDriver;
-import static core.DriverFactory.killDriver;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import core.BaseTest;
 import page.CampoTreinamentoPage;
 
-public class TesteCadastroComSucesso {
+public class TesteCadastroComSucesso extends BaseTest{
 	
 	private CampoTreinamentoPage page;
 
@@ -19,11 +18,6 @@ public class TesteCadastroComSucesso {
 		page = new CampoTreinamentoPage();
 	}
 	
-	@After
-	public void finaliza(){
-		killDriver();
-	}
-
 	@Test
 	public void deveRealizarCadastroComSucesso(){
 		page.setNome("Wagner");
