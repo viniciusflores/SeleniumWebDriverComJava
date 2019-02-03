@@ -18,17 +18,8 @@ import Pages.LoginPage;
 
 public class BaseTest {
 	
-	private LoginPage page = new LoginPage();
-	
 	@Rule
 	public TestName testNome = new TestName();
-	
-	@Before
-	public void inicializa() {
-		page.acessarTelaInicial();
-		page.logarNoSistema("testeselenium@udemy.com", "helloworld");
-	}
-
 	
 	@After
 	public void finaliza() throws IOException{
