@@ -7,23 +7,23 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Rule;
-import org.junit.rules.TestName;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
+
+
 
 public class BaseTest {
 
-	@Rule
-	public TestName testNome = new TestName();
+	ITestContext testContext;
 	
-	@After
+	@AfterMethod
 	public void finaliza() throws IOException{
 		TakesScreenshot ss = (TakesScreenshot) getDriver();
 		File arquivo = ss.getScreenshotAs(OutputType.FILE); 
 		FileUtils.copyFile(arquivo, new File("target" + File.separator + "screenshot"  
-				+ File.separator + testNome.getMethodName() + ".jpg"));
+				+ File.separator + testContext.getName() + ".jpg"));
 		
 		if(Propiedades.FECHAR_BROWSER) {
 			killDriver();

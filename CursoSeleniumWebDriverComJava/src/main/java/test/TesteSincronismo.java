@@ -3,12 +3,12 @@ import static core.DriverFactory.getDriver;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import core.BaseTest;
 import core.DSL;
@@ -16,7 +16,7 @@ import core.DSL;
 public class TesteSincronismo extends BaseTest{
 	private DSL dsl;
 
-	@Before
+	@BeforeClass
 	public void inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();

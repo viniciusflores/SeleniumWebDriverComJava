@@ -4,19 +4,17 @@ import static Core.DriverFactory.getDriver;
 
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import Core.BaseTest;
 import Core.DriverFactory;
 import Pages.MenuPage;
 import Pages.ResumoPage;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ResumoTest extends BaseTest {
 	private MenuPage menuPage = new MenuPage();
 	private ResumoPage resumoPage = new ResumoPage();
@@ -27,7 +25,7 @@ public class ResumoTest extends BaseTest {
 		
 		resumoPage.excluirMovimentacao();
 		
-		Assert.assertEquals("Movimentação removida com sucesso!",
+		Assert.assertEquals("Movimentaï¿½ï¿½o removida com sucesso!",
 				resumoPage.obterMensagemSucesso());
 	}
 	

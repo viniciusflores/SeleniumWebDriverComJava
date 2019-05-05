@@ -1,15 +1,9 @@
-package Suite;
+/*package Suite;
 import static core.DriverFactory.killDriver;
 
-import org.junit.AfterClass;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+import org.testng.annotations.AfterClass;
 
-import core.DriverFactory;
 import test.TesteCadastroComSucesso;
-import test.TesteCampoTreinamento;
-import test.TesteFormulario;
 import test.TesteRegrasCadastro;
 
 @RunWith(Suite.class)
@@ -26,3 +20,4 @@ public class SuiteTeste {
 	}
 	
 }
+*/

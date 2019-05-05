@@ -1,12 +1,12 @@
 package test;
 import static core.DriverFactory.getDriver;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import core.BaseTest;
 import core.DSL;
@@ -14,7 +14,7 @@ import core.DSL;
 public class TesteAjax extends BaseTest{
 	private DSL dsl;
 
-	@Before
+	@BeforeTest
 	public void inicializa() {
 		getDriver().get("https://www.primefaces.org/showcase/ui/ajax/basic.xhtml");
 		dsl = new DSL();

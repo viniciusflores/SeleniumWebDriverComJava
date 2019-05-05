@@ -1,10 +1,11 @@
 package test;
-import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.openqa.selenium.WebDriver;
 // import org.openqa.selenium.edge.EdgeDriver;
 // import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class TesteGoogle {
 	

@@ -3,25 +3,19 @@ import static core.DriverFactory.getDriver;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameter;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import core.BaseTest;
 import core.DSL;
 import page.CampoTreinamentoPage;
 
-@RunWith(Parameterized.class)
+//@RunWith(Parameterized.class)
 public class TesteRegrasCadastro extends BaseTest{
 	private DSL dsl;
 	private CampoTreinamentoPage page;
-
+/*
 	@Parameter
 	public String nome;
 	@Parameter(value = 1)
@@ -34,8 +28,8 @@ public class TesteRegrasCadastro extends BaseTest{
 	public String[] esportes;
 	@Parameter(value = 5)
 	public String msg;
-
-	@Before
+*/
+	@BeforeClass
 	public void inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
@@ -53,7 +47,7 @@ public class TesteRegrasCadastro extends BaseTest{
 						new String[] { "Karate", "O que eh esporte?" }, "Voce faz esporte ou nao?" } });
 	}
 
-	@Test
+	/*@Test
 	public void deveValidarRegras() {
 		page.setNome(nome);
 		page.setSobrenome(sobrenome);
@@ -75,5 +69,5 @@ public class TesteRegrasCadastro extends BaseTest{
 		page.setEsportes(esportes);
 		page.cadastrar();
 		Assert.assertEquals(msg, dsl.alertaObterTextoEAceita());
-	}
+	}*/
 }

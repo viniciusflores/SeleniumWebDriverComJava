@@ -1,12 +1,12 @@
 package test;
 import static core.DriverFactory.getDriver;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import core.BaseTest;
 import core.DSL;
@@ -14,7 +14,7 @@ import core.DSL;
 public class TesteFrameJanela extends BaseTest{
 	private DSL dsl;
 
-	@Before
+	@BeforeClass
 	public void inicializa() {
 		getDriver().manage().window().setSize(new Dimension(1200, 765));
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");

@@ -1,9 +1,9 @@
 package test;
 import static core.DriverFactory.getDriver;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import core.BaseTest;
 import core.DSL;
@@ -14,7 +14,7 @@ public class TesteFormulario extends BaseTest{
 	private DSL dsl;
 	private CampoTreinamentoPage page;
 	
-	@Before
+	@BeforeClass
 	public void inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		page = new CampoTreinamentoPage();

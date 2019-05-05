@@ -7,17 +7,15 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import Core.BaseTest;
 import Pages.MenuPage;
 import Pages.MovimentacaoPage;
 import Utils.DataUtils;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MovimentacaoTest extends BaseTest {
 	private MenuPage menuPage = new MenuPage();
 	private MovimentacaoPage movPage = new MovimentacaoPage();
@@ -28,14 +26,14 @@ public class MovimentacaoTest extends BaseTest {
 		
 		movPage.setDataMovimentacao(obterDataFormatada(new Date()));
 		movPage.setDataPagamento(obterDataFormatada(new Date()));
-		movPage.setDescricao("Movimentação do Teste");
+		movPage.setDescricao("Movimentaï¿½ï¿½o do Teste");
 		movPage.setInteressado("Interessado Qualquer");
 		movPage.setValor("500");
 		movPage.setConta(NOME_CONTA_ALTERADA);
 		movPage.setStatusPago();
 		movPage.salvar();
 		
-		Assert.assertEquals("Movimentação adicionada com sucesso!", movPage.obterMensagemSucesso());
+		Assert.assertEquals("Movimentaï¿½ï¿½o adicionada com sucesso!", movPage.obterMensagemSucesso());
 	}
 	
 	@Test
@@ -44,12 +42,12 @@ public class MovimentacaoTest extends BaseTest {
 		
 		movPage.salvar();
 		List<String> erros = movPage.obterErros();
-//		Assert.assertEquals("Data da Movimentação é obrigatório", erros.get(0));
-//		Assert.assertTrue(erros.contains("Data da Movimentação é obrigatório"));
+//		Assert.assertEquals("Data da Movimentaï¿½ï¿½o ï¿½ obrigatï¿½rio", erros.get(0));
+//		Assert.assertTrue(erros.contains("Data da Movimentaï¿½ï¿½o ï¿½ obrigatï¿½rio"));
 		Assert.assertTrue(erros.containsAll(Arrays.asList(
-				"Data da Movimentação é obrigatório", "Data do pagamento é obrigatório",
-				"Descrição é obrigatório", "Interessado é obrigatório", 
-				"Valor é obrigatório", "Valor deve ser um número")));
+				"Data da Movimentaï¿½ï¿½o ï¿½ obrigatï¿½rio", "Data do pagamento ï¿½ obrigatï¿½rio",
+				"Descriï¿½ï¿½o ï¿½ obrigatï¿½rio", "Interessado ï¿½ obrigatï¿½rio", 
+				"Valor ï¿½ obrigatï¿½rio", "Valor deve ser um nï¿½mero")));
 		Assert.assertEquals(6, erros.size());
 	}
 	
@@ -61,7 +59,7 @@ public class MovimentacaoTest extends BaseTest {
 		
 		movPage.setDataMovimentacao(obterDataFormatada(dataFutura));
 		movPage.setDataPagamento(obterDataFormatada(dataFutura));
-		movPage.setDescricao("Movimentação do Teste");
+		movPage.setDescricao("Movimentaï¿½ï¿½o do Teste");
 		movPage.setInteressado("Interessado Qualquer");
 		movPage.setValor("500");
 		movPage.setConta(NOME_CONTA_ALTERADA);
@@ -70,7 +68,7 @@ public class MovimentacaoTest extends BaseTest {
 		
 		List<String> erros = movPage.obterErros();
 		Assert.assertTrue(
-				erros.contains("Data da Movimentação deve ser menor ou igual à data atual"));
+				erros.contains("Data da Movimentaï¿½ï¿½o deve ser menor ou igual ï¿½ data atual"));
 		Assert.assertEquals(1, erros.size());
 	}
 }

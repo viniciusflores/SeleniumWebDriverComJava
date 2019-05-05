@@ -1,10 +1,10 @@
 package test;
 import static core.DriverFactory.getDriver;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import core.BaseTest;
 import core.DSL;
@@ -13,7 +13,7 @@ import page.CampoTreinamentoPage;
 public class TestePrime extends BaseTest {
 	private DSL dsl;
 
-	@Before
+	@BeforeClass
 	public void inicializa(){
 		getDriver().get("https://www.primefaces.org/showcase/ui/input/oneRadio.xhtml");
 		dsl = new DSL();

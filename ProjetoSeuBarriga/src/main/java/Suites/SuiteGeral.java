@@ -1,4 +1,4 @@
-package Suites;
+/*package Suites;
 
 import static Core.DriverFactory.killDriver;
 
@@ -11,7 +11,7 @@ import Core.DriverFactory;
 import Pages.LoginPage;
 import Tests.ContaTest;
 import Tests.MovimentacaoTest;
-import Tests.RemoverMovimentaçãoContaTest;
+import Tests.RemoverMovimentaï¿½ï¿½oContaTest;
 import Tests.ResumoTest;
 import Tests.SaldoTest;
 
@@ -19,7 +19,7 @@ import Tests.SaldoTest;
 @SuiteClasses({
 	ContaTest.class,
 	MovimentacaoTest.class,
-	RemoverMovimentaçãoContaTest.class,
+	RemoverMovimentaï¿½ï¿½oContaTest.class,
 	SaldoTest.class,
 	ResumoTest.class
 })
@@ -37,3 +37,4 @@ public class SuiteGeral {
 		killDriver();
 	}
 }
+*/

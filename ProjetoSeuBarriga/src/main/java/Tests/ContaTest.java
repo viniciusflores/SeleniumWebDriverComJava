@@ -2,16 +2,14 @@ package Tests;
 
 import static Core.Propiedades.NOME_CONTA_ALTERADA;
 
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import Core.BaseTest;
 import Pages.ContasPage;
 import Pages.MenuPage;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContaTest extends BaseTest{
 
 	MenuPage menuPage = new MenuPage();
@@ -43,7 +41,7 @@ public class ContaTest extends BaseTest{
 		contasPage.setNome(NOME_CONTA_ALTERADA);
 		contasPage.salvar();
 		
-		Assert.assertEquals("Já existe uma conta com esse nome!", contasPage.obterMensagemErro());
+		Assert.assertEquals("Jï¿½ existe uma conta com esse nome!", contasPage.obterMensagemErro());
 	}
 
 }
