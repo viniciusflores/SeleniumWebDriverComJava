@@ -41,7 +41,7 @@ public class ContaTest extends BaseTest{
 		contasPage.setNome(NOME_CONTA_ALTERADA);
 		contasPage.salvar();
 		
-		Assert.assertEquals("J� existe uma conta com esse nome!", contasPage.obterMensagemErro());
+		Assert.assertEquals("Já existe uma conta com esse nome!", contasPage.obterMensagemErro());
 	}
 
 }

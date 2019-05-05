@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import Core.BasePage;
-import Core.DriverFactory;
 
 public class MovimentacaoPage extends BasePage {
 	public void setDataMovimentacao(String data) {

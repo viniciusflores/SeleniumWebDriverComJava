@@ -18,7 +18,7 @@ public class TesteRegrasCadastro extends BaseTest{
 /*
 	@Parameter
 	public String nome;
-	@Parameter(value = 1)
+	@Parameter(value = 1)P
 	public String sobrenome;
 	@Parameter(value = 2)
 	public String sexo;

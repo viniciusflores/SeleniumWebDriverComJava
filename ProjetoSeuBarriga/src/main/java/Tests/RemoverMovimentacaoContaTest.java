@@ -19,6 +19,6 @@ public class RemoverMovimentacaoContaTest extends BaseTest {
 		menuPage.acessarTelaListarConta();
 		contasPage.clicarExcluirConta(NOME_CONTA_ALTERADA);	
 		
-		Assert.assertEquals("Conta em uso na movimenta��es", contasPage.obterMensagemErro());
+		Assert.assertEquals("Conta em uso na movimentações", contasPage.obterMensagemErro());
 	}
 }

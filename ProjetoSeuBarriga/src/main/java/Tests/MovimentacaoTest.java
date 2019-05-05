@@ -26,14 +26,14 @@ public class MovimentacaoTest extends BaseTest {
 		
 		movPage.setDataMovimentacao(obterDataFormatada(new Date()));
 		movPage.setDataPagamento(obterDataFormatada(new Date()));
-		movPage.setDescricao("Movimenta��o do Teste");
+		movPage.setDescricao("Movimentação do Teste");
 		movPage.setInteressado("Interessado Qualquer");
 		movPage.setValor("500");
 		movPage.setConta(NOME_CONTA_ALTERADA);
 		movPage.setStatusPago();
 		movPage.salvar();
 		
-		Assert.assertEquals("Movimenta��o adicionada com sucesso!", movPage.obterMensagemSucesso());
+		Assert.assertEquals("Movimentação adicionada com sucesso!", movPage.obterMensagemSucesso());
 	}
 	
 	@Test
@@ -45,9 +45,9 @@ public class MovimentacaoTest extends BaseTest {
 //		Assert.assertEquals("Data da Movimenta��o � obrigat�rio", erros.get(0));
 //		Assert.assertTrue(erros.contains("Data da Movimenta��o � obrigat�rio"));
 		Assert.assertTrue(erros.containsAll(Arrays.asList(
-				"Data da Movimenta��o � obrigat�rio", "Data do pagamento � obrigat�rio",
-				"Descri��o � obrigat�rio", "Interessado � obrigat�rio", 
-				"Valor � obrigat�rio", "Valor deve ser um n�mero")));
+				"Data da Movimentação é obrigatório", "Data do pagamento é obrigatório",
+				"Descrição é obrigatório", "Interessado é obrigatório", 
+				"Valor é obrigatório", "Valor deve ser um número")));
 		Assert.assertEquals(6, erros.size());
 	}
 	
@@ -59,7 +59,7 @@ public class MovimentacaoTest extends BaseTest {
 		
 		movPage.setDataMovimentacao(obterDataFormatada(dataFutura));
 		movPage.setDataPagamento(obterDataFormatada(dataFutura));
-		movPage.setDescricao("Movimenta��o do Teste");
+		movPage.setDescricao("Movimentação do Teste");
 		movPage.setInteressado("Interessado Qualquer");
 		movPage.setValor("500");
 		movPage.setConta(NOME_CONTA_ALTERADA);
@@ -68,7 +68,7 @@ public class MovimentacaoTest extends BaseTest {
 		
 		List<String> erros = movPage.obterErros();
 		Assert.assertTrue(
-				erros.contains("Data da Movimenta��o deve ser menor ou igual � data atual"));
+				erros.contains("Data da Movimentação deve ser menor ou igual à data atual"));
 		Assert.assertEquals(1, erros.size());
 	}
 }
